@@ -1,5 +1,5 @@
 {
-  description = "newbee-ocr-cli flake";
+  description = "newbee-ocr-cli packaged as a flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -20,14 +20,10 @@
         let
           pkgs = import nixpkgs { inherit system; };
         in
-        {
-          default = pkgs.callPackage ./default.nix { };
+        rec {
           newbee-ocr-cli = pkgs.callPackage ./default.nix { };
+          default = newbee-ocr-cli;
         }
       );
-
-      overlays.default = final: prev: {
-        newbee-ocr-cli = final.callPackage ./default.nix { };
-      };
     };
 }
