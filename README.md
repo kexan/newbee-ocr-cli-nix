@@ -1,1 +1,0 @@
-# -newbee-ocr-cli-nix
